@@ -94,6 +94,9 @@ static bool set_mode(uint8_t mode)
             success = poshold_init(ignore_checks);
             break;
 #endif
+        case PUMP:
+            success = land_init(ignore_checks);
+            break;
 
         default:
             success = false;
@@ -187,6 +190,10 @@ static void update_flight_mode()
 
         case FLIP:
             flip_run();
+            break;
+
+        case PUMP:
+            pump_run();
             break;
 
 #if AUTOTUNE_ENABLED == ENABLED
@@ -309,6 +316,9 @@ print_flight_mode(AP_HAL::BetterStream *port, uint8_t mode)
         break;
     case LAND:
         port->print_P(PSTR("LAND"));
+        break;
+    case PUMP:
+        port->print_P(PSTR("PUMP"));
         break;
     case OF_LOITER:
         port->print_P(PSTR("OF_LOITER"));
