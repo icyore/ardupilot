@@ -149,7 +149,7 @@ static void update_flight_mode()
             #endif
             break;
         case NEWFLIGHTMODE:
-            success = newflightmode_run();
+            newflightmode_run();
             break;
         case ALT_HOLD:
             althold_run();
