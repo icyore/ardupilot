@@ -45,6 +45,9 @@ static bool set_mode(uint8_t mode)
             success = auto_init(ignore_checks);
             break;
 
+        case NEWFLIGHTMODE:
+            success = newflightmode_init(ignore_checks);
+            break;
         case CIRCLE:
             success = circle_init(ignore_checks);
             break;
@@ -145,7 +148,9 @@ static void update_flight_mode()
                 stabilize_run();
             #endif
             break;
-
+        case NEWFLIGHTMODE:
+            success = newflightmode_run();
+            break;
         case ALT_HOLD:
             althold_run();
             break;
@@ -304,6 +309,9 @@ print_flight_mode(AP_HAL::BetterStream *port, uint8_t mode)
     case ACRO:
         port->print_P(PSTR("ACRO"));
         break;
+    case NEWFLIGHTMODE:
+        port->print_P(PSTR("NEWFLIGHTMODE"));
+        break; 
     case ALT_HOLD:
         port->print_P(PSTR("ALT_HOLD"));
         break;
