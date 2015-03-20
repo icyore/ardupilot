@@ -304,7 +304,7 @@ print_flight_mode(AP_HAL::BetterStream *port, uint8_t mode)
 {
     switch (mode) {
     case STABILIZE:
-        port->print_P(PSTR("STABILIZE"));
+        port->print_P(PSTR("ICYSTABILIZE"));
         break;
     case ACRO:
         port->print_P(PSTR("ACRO"));
@@ -313,7 +313,7 @@ print_flight_mode(AP_HAL::BetterStream *port, uint8_t mode)
         port->print_P(PSTR("NEWFLIGHTMODE"));
         break; 
     case ALT_HOLD:
-        port->print_P(PSTR("ALT_HOLD"));
+        port->print_P(PSTR("ICYALT_HOLD"));
         break;
     case AUTO:
         port->print_P(PSTR("AUTO"));
