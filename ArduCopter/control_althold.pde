@@ -70,12 +70,13 @@ static void althold_run()
         // call throttle controller
         if (sonar_alt_health >= SONAR_ALT_HEALTH_MAX) {
             // if sonar is ok, use surface tracking
-            target_climb_rate = get_throttle_surface_tracking(target_climb_rate, pos_control.get_alt_target(), G_Dt);
+            //target_climb_rate = get_throttle_surface_tracking(target_climb_rate, pos_control.get_alt_target(), G_Dt);
         }
-
+        
+        if (sonar_alt>230) set_mode(STABILIZE);
         // call position controller
-        pos_control.set_alt_target_from_climb_rate(1.0, G_Dt);
-        //pos_control.set_alt_target_from_climb_rate(target_climb_rate, G_Dt);
+        //pos_control.set_alt_target_from_climb_rate(2.0, G_Dt,true);
+        pos_control.set_alt_target_from_climb_rate(10.0, G_Dt,true);
         pos_control.update_z_controller();
     }
 }
